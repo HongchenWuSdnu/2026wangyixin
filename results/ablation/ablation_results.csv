@@ -1,0 +1,6 @@
+Model,Description,Accuracy,Macro-F1,Loss,Precision (Fake),Recall (Fake),F1 (Fake),Precision (True),Recall (True),F1 (True)
+Baseline (Full),完整模型（所有模块启用）,0.9312,0.9253,0.2395,,,,,,
+No Entity,移除实体编码,0.9191,0.9094,0.3031,,,,,,
+No Cross-Modal,移除跨模态Transformer交互,0.9329,0.9257,0.3406,,,,,,
+No Conflict,移除冲突编码器,0.9312,0.9237,0.235,,,,,,
+Lite (Simple),简化融合（无实体+无跨模态+无冲突）,0.9165,0.908,0.4683,,,,,,
