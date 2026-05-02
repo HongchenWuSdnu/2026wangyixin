@@ -23,15 +23,15 @@ code/
     ├── data_loader_new.py           # 数据加载器
     ├── modular_data_loader.py       # 模块化数据加载器
     └── train_eval_helper.py         # 训练/评估助手函数
-
 data/
-└── weibo/                      # Weibo数据集
-    ├── stop_words.txt          # 中文停用词表
-    └── processed/          # 处理后的数据
-        ├── train.csv        # 训练集
-        ├── test.csv         # 测试集
-        └── valid.csv        # 验证集
-
+└── weibo/                     # Weibo 数据集相关文件
+├── stop_words.txt         # 中文停用词表
+├── processed/             # 处理后的文本数据与数据划分文件
+│   ├── train.csv          # 训练集
+│   ├── test.csv           # 测试集
+│   └── valid.csv          # 验证集
+├── nonrumor_images_sample/ # 真实新闻图片示例
+└── rumor_images_sample/    # 虚假新闻图片示例
 scripts/
 └── analyze_ablation.py         # 消融实验分析脚本
 ```
@@ -40,7 +40,7 @@ scripts/
 - modular_models.py：便于消融实验的模块化实现
 - utils/train_eval_helper.py：包含训练循环、评估函数、损失函数定义
 - process_*.py：数据预处理，生成可直接用于训练的格式
-
+- 由于处理后的完整图片数据文件体积较大，且原始 Weibo 多模态虚假新闻数据集可能存在再分发限制，本仓库未上传完整图片数据集。完整实验中使用的图片数据需要根据原始 Weibo 多模态虚假新闻数据集来源获取，并按照本仓库提供的预处理脚本进行处理。
 ---
 
 使用方法：
