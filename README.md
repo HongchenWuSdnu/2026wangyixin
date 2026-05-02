@@ -126,9 +126,9 @@ cd code/
 python main.py \
     --data_dir ../data/weibo/processed \
     --checkpoint_dir ../checkpoints \
-    --epochs 50 \
-    --batch_size 32 \
-    --learning_rate 3e-5
+    --epochs 8 \
+    --batch_size 20 \
+    --learning_rate 2e-5
 ```
 
 主要参数说明：
@@ -221,12 +221,6 @@ Weibo数据集结果
   - 整体性能（Accuracy和F1）
   - 训练稳定性（Loss收敛）
   - 类别均衡性（Recall均衡）
-
-性能权衡
-- 若追求最大准确率，可重点优化特征级对齐
-- 若追求稳定性和均衡性，需要保留交互级对齐
-- 若需轻量化部署，可移除判别级量化，性能损失最小
-
 
 验证指标
 - 在真实Weibo数据集上训练和测试
