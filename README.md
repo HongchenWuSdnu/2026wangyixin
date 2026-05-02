@@ -112,10 +112,7 @@ python process_text_weibo.py --input_dir ../data/weibo --output_dir ../data/weib
 python process_image_weibo.py --input_dir ../data/weibo --output_dir ../data/weibo/processed
 ```
 
-预处理输出：
-- 清理后的文本特征
-- 预处理后的图像特征
-- 生成训练/验证/测试集划分
+预处理输出：清理后的文本特征、预处理后的图像特征、生成训练/验证/测试集划分
 
 第3步：模型训练
 
@@ -131,20 +128,7 @@ python main.py \
     --learning_rate 2e-5
 ```
 
-主要参数说明：
-- --data_dir：预处理后的数据目录
-- --checkpoint_dir：模型保存路径
-- --epochs：训练轮数
-- --batch_size：批大小
-- --learning_rate：学习率
-
-训练输出：
-- 模型权重保存到 ../checkpoints/ablation_full/best_model.pt
-- 训练日志和测试结果保存到 ../checkpoints/ablation_full/test_results.log
-
 第4步：消融实验（可选）
-
-如果要运行消融实验（测试各模块的作用）：
 
 ```bash
 # 修改 main.py 中的 ABLATION_MODE 参数
@@ -167,17 +151,9 @@ cd ../scripts/
 # 自动生成消融实验对比分析
 python analyze_ablation.py --checkpoints_dir ../checkpoints --output_dir ../results/ablation
 ```
-
-这会生成：
-- ablation_results.csv - 性能对比表
-- ablation_report.md - 分析报告
-- metrics_comparison.png - 图表可视化
-
 ---
 
-数据集
-
-本项目使用 Weibo虚假新闻数据集：(https://doi.org/10.6084/m9.figshare.28516655)
+数据集：本项目使用 Weibo虚假新闻数据集：(https://doi.org/10.6084/m9.figshare.28516655)
 
 ---
 
@@ -196,36 +172,6 @@ Weibo数据集结果
 整体性能优异
 - 在Weibo数据集上达到93.12%的准确率和92.53%的宏平均F1
 - 对虚假新闻检测的泛化能力强
-
-各层次的作用分析
-通过消融实验，我们发现多层次语义一致性建模框架中各层次具有不同的作用和贡献：
-
-1. 特征级对齐（多粒度文本语义建模）- 核心贡献
-   - 对性能提升贡献最为显著
-   - 是整个框架的基础，直接影响准确率和F1分数
-   - 移除此层次后，模型性能下降最明显
-
-2. 交互级对齐（跨模态Transformer）- 稳定性贡献
-   - Accuracy和Macro-F1上的增益并不稳定
-   - 但有助于显著降低Loss，提高训练稳定性
-   - 改善类别级Recall的均衡性，减少类别偏差
-   - 在轻量化场景中可选
-
-3. 判别级量化（显式冲突量化）- 补充信息
-   - 贡献相对边际，但仍有一定作用
-   - 为细粒度判别提供补充信息
-   - 增强模型对虚假新闻显式冲突特征的捕捉
-
-三层协同效果
-- 三个层次的协同使用使完整模型在以下方面取得了较好的综合表现：
-  - 整体性能（Accuracy和F1）
-  - 训练稳定性（Loss收敛）
-  - 类别均衡性（Recall均衡）
-
-验证指标
-- 在真实Weibo数据集上训练和测试
-- 使用标准的Accuracy、Precision、Recall、F1-Score评估
-- 完整的5折交叉验证确保结果稳定
 
 ---
 
