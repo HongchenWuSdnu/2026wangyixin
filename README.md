@@ -27,10 +27,10 @@ code/
 data/
 └── weibo/                      # Weibo数据集
     ├── stop_words.txt          # 中文停用词表
-    └── processedData/          # 处理后的数据
-        ├── df_train.csv        # 完整训练集
-        ├── df_test.csv         # 完整测试集
-        └── df_train[123].csv, df_test[123].csv  # 数据划分
+    └── processed/          # 处理后的数据
+        ├── train.csv        # 训练集
+        ├── test.csv         # 测试集
+        └── valid.csv        # 验证集
 
 scripts/
 └── analyze_ablation.py         # 消融实验分析脚本
